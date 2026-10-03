@@ -22,24 +22,27 @@ import 'package:path/path.dart' as p;
 
 import '../test_utils.dart';
 
-void verifyBindings(
+Future<void> verifyBindings(
   FfiGenerator config, {
   Logger? logger,
   bool Function(String expected, String actual)? dartVerify,
   bool Function(String expected, String actual)? objCVerify,
-}) {
+}) async {
   final context = testContext(config);
   final library = parse(context);
 
   final bindingsName = context.config.output.dart.path.pathSegments.last;
-  matchLibraryWithExpected(context, library, bindingsName, [
+  await matchLibraryWithExpected(context, library, bindingsName, [
     'test',
     'native_objc_test',
     bindingsName,
   ], verify: dartVerify);
 
-  final mFileName = context.config.output.objCFile.pathSegments.last;
-  matchObjCFileWithExpected(context, library, mFileName, [
+  final mFileName = p.relative(
+    context.config.output.objCFile.toFilePath(),
+    from: p.join(packagePathForTests, 'test', 'native_objc_test'),
+  );
+  await matchObjCFileWithExpected(context, library, mFileName, [
     'test',
     'native_objc_test',
     mFileName,

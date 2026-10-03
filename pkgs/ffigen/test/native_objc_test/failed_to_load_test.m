@@ -4,6 +4,8 @@
 
 #import <Foundation/NSObject.h>
 
+typedef void (^BlockThatWillFailToLoad)(int value);
+
 @interface ClassThatWillFailToLoad : NSObject {}
 -(int32_t)get123;
 @end

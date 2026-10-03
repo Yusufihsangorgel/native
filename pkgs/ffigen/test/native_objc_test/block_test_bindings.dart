@@ -2180,6 +2180,7 @@ abstract final class ObjCBlock_ffiVoid {
         _18tji2r_wrapListenerBlock_1pl9qdv,
         (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) => fn(),
         keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
       ),
       retain: false,
       release: true,
@@ -2205,6 +2206,7 @@ abstract final class ObjCBlock_ffiVoid {
         _18tji2r_wrapBlockingBlock_1pl9qdv,
         (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) => fn(),
         keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
       ),
       retain: false,
       release: true,
@@ -2311,17 +2313,20 @@ abstract final class ObjCBlock_ffiVoid_DummyObject {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(DummyObject)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1hqv45x.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1hqv45x.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2342,17 +2347,20 @@ abstract final class ObjCBlock_ffiVoid_DummyObject {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(DummyObject)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1hqv45x.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1hqv45x.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2484,17 +2492,20 @@ abstract final class ObjCBlock_ffiVoid_DummyObject$1 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(DummyObject?)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_te4g5k.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_te4g5k.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2515,17 +2526,20 @@ abstract final class ObjCBlock_ffiVoid_DummyObject$1 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(DummyObject?)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_te4g5k.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_te4g5k.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2646,17 +2660,20 @@ abstract final class ObjCBlock_ffiVoid_Int32 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Int32)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_1bqef4y, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1liq3c0.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_1bqef4y,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1liq3c0.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2677,17 +2694,20 @@ abstract final class ObjCBlock_ffiVoid_Int32 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Int32)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_1bqef4y, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1liq3c0.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_1bqef4y,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1liq3c0.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2797,17 +2817,20 @@ abstract final class ObjCBlock_ffiVoid_Int32$1 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Pointer<ffi.Int32>)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_yhkuco, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_nge4yi.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_yhkuco,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_nge4yi.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2828,17 +2851,20 @@ abstract final class ObjCBlock_ffiVoid_Int32$1 {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Pointer<ffi.Int32>)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_yhkuco, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_nge4yi.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_yhkuco,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_nge4yi.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2979,17 +3005,20 @@ abstract final class ObjCBlock_ffiVoid_Int32_Vec4_ffiChar {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Int32, Vec4, ffi.Pointer<ffi.Char>)
     >(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_li50va, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_bht217.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_li50va,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_bht217.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1, args.arg2);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1, args.arg2);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3015,17 +3044,20 @@ abstract final class ObjCBlock_ffiVoid_Int32_Vec4_ffiChar {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Int32, Vec4, ffi.Pointer<ffi.Char>)
     >(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_li50va, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_bht217.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_li50va,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_bht217.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1, args.arg2);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1, args.arg2);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3191,17 +3223,20 @@ abstract final class ObjCBlock_ffiVoid_IntBlock {
     return objc.ObjCBlock<
       ffi.Void Function(objc.ObjCBlock<ffi.Int32 Function(ffi.Int32)>)
     >(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_f167m6, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_lgqwom.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_f167m6,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_lgqwom.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3224,17 +3259,20 @@ abstract final class ObjCBlock_ffiVoid_IntBlock {
     return objc.ObjCBlock<
       ffi.Void Function(objc.ObjCBlock<ffi.Int32 Function(ffi.Int32)>)
     >(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_f167m6, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_lgqwom.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_f167m6,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_lgqwom.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3351,17 +3389,20 @@ abstract final class ObjCBlock_ffiVoid_NSString {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(objc.NSString)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1vzvc26.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1vzvc26.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3382,17 +3423,20 @@ abstract final class ObjCBlock_ffiVoid_NSString {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(objc.NSString)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_xtuoz7, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1vzvc26.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_xtuoz7,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1vzvc26.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3533,17 +3577,20 @@ abstract final class ObjCBlock_ffiVoid_Vec2_Vec4_NSObject {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(Vec2, Vec4, objc.NSObject)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_ru30ue, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_7ojdju.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_ru30ue,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_7ojdju.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1, args.arg2);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1, args.arg2);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3564,17 +3611,20 @@ abstract final class ObjCBlock_ffiVoid_Vec2_Vec4_NSObject {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(Vec2, Vec4, objc.NSObject)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_ru30ue, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_7ojdju.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_ru30ue,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_7ojdju.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1, args.arg2);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1, args.arg2);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3726,17 +3776,20 @@ abstract final class ObjCBlock_ffiVoid_objcObjCSelector {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCSelector>)>(
-      objc.newBlockPort(_18tji2r_wrapListenerBlock_1d9e4oe, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1b0erz1.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _18tji2r_wrapListenerBlock_1d9e4oe,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1b0erz1.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -3758,17 +3811,20 @@ abstract final class ObjCBlock_ffiVoid_objcObjCSelector {
     bool keepIsolateAlive = true,
   }) {
     return objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCSelector>)>(
-      objc.newBlockingBlockPort(_18tji2r_wrapBlockingBlock_1d9e4oe, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1b0erz1.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _18tji2r_wrapBlockingBlock_1d9e4oe,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1b0erz1.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0);
-      }, keepIsolateAlive),
+          fn(args.arg0);
+        },
+        keepIsolateAlive,
+        objCFile: "block_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );

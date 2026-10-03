@@ -1,3 +1,9 @@
+## 9.6.3-wip
+
+- Close block ports and blocking callbacks when a trampoline fails to load,
+  and report the generated `.m` file when provided by FFIgen.
+- Clarify how to fix missing Objective-C classes.
+
 ## 9.6.2
 
 - Fix potential memory leaks when converting a Dart `String` to a `NSString`

@@ -41,7 +41,9 @@ final class FailedToLoadClassException implements Exception {
   FailedToLoadClassException(this.clazz);
 
   @override
-  String toString() => '$runtimeType: Failed to load Objective-C class: $clazz';
+  String toString() =>
+      '$runtimeType: Failed to load Objective-C class: $clazz. '
+      'Check that the library defining this class is linked into your app.';
 }
 
 final class FailedToLoadProtocolException implements Exception {
@@ -451,8 +453,9 @@ typedef BlockCallbackPointer = Pointer<NativeFunction<BlockCallback>>;
 BlockPtr newBlockPort(
   BlockPtr Function(int, ContextPtr) maker,
   void Function(ObjectPtr) callback,
-  bool keepIsolateAlive,
-) {
+  bool keepIsolateAlive, {
+  String? objCFile,
+}) {
   _ensureDartAPI();
   final zone = Zone.current;
   final port = RawReceivePort()..keepIsolateAlive = keepIsolateAlive;
@@ -472,7 +475,19 @@ BlockPtr newBlockPort(
     }
   };
   final nativePort = port.sendPort.nativePort;
-  final blkPtr = maker(nativePort, objCContext);
+  final BlockPtr blkPtr;
+  try {
+    blkPtr = maker(nativePort, objCContext);
+    // ignore: avoid_catching_errors
+  } on ArgumentError catch (error) {
+    port.close();
+    if (objCFile == null) rethrow;
+    throw ArgumentError(
+      'Failed to load Objective-C block trampoline. '
+      'Include the generated file "$objCFile" in your app\'s build. '
+      '$error',
+    );
+  }
   c.attachPortBlockFinalizer(blkPtr.cast(), nativePort);
   return blkPtr;
 }
@@ -481,8 +496,9 @@ BlockPtr newBlockPort(
 BlockPtr newBlockingBlockPort(
   BlockPtr Function(int, ContextPtr, BlockCallbackPointer) maker,
   void Function(ObjectPtr) callback,
-  bool keepIsolateAlive,
-) {
+  bool keepIsolateAlive, {
+  String? objCFile,
+}) {
   _ensureDartAPI();
   final zone = Zone.current;
   void runCallback(ObjectPtr argsPtr) {
@@ -511,7 +527,20 @@ BlockPtr newBlockingBlockPort(
     }
   };
   final nativePort = port.sendPort.nativePort;
-  final blkPtr = maker(nativePort, objCContext, direct.nativeFunction);
+  final BlockPtr blkPtr;
+  try {
+    blkPtr = maker(nativePort, objCContext, direct.nativeFunction);
+    // ignore: avoid_catching_errors
+  } on ArgumentError catch (error) {
+    port.close();
+    direct.close();
+    if (objCFile == null) rethrow;
+    throw ArgumentError(
+      'Failed to load Objective-C block trampoline. '
+      'Include the generated file "$objCFile" in your app\'s build. '
+      '$error',
+    );
+  }
   c.attachPortBlockFinalizer(blkPtr.cast(), nativePort);
   return blkPtr;
 }

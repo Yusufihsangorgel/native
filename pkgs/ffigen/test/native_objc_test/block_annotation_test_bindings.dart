@@ -2506,6 +2506,7 @@ abstract final class ObjCBlock_ffiVoid {
         _z0xonr_wrapListenerBlock_1pl9qdv,
         (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) => fn(),
         keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
       ),
       retain: false,
       release: true,
@@ -2531,6 +2532,7 @@ abstract final class ObjCBlock_ffiVoid {
         _z0xonr_wrapBlockingBlock_1pl9qdv,
         (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) => fn(),
         keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
       ),
       retain: false,
       release: true,
@@ -2650,17 +2652,20 @@ abstract final class ObjCBlock_ffiVoid_ffiVoid_EmptyObject {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Pointer<ffi.Void>, EmptyObject)
     >(
-      objc.newBlockPort(_z0xonr_wrapListenerBlock_18v1jvf, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1wgsnfr.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _z0xonr_wrapListenerBlock_18v1jvf,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1wgsnfr.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1);
+        },
+        keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2684,17 +2689,20 @@ abstract final class ObjCBlock_ffiVoid_ffiVoid_EmptyObject {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Pointer<ffi.Void>, EmptyObject)
     >(
-      objc.newBlockingBlockPort(_z0xonr_wrapBlockingBlock_18v1jvf, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_1wgsnfr.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _z0xonr_wrapBlockingBlock_18v1jvf,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_1wgsnfr.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1);
+        },
+        keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2862,17 +2870,20 @@ abstract final class ObjCBlock_ffiVoid_ffiVoid_EmptyObject$1 {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Pointer<ffi.Void>, objc.Consumed<EmptyObject>)
     >(
-      objc.newBlockPort(_z0xonr_wrapListenerBlock_6yc3kd, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_o9cz58.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockPort(
+        _z0xonr_wrapListenerBlock_6yc3kd,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_o9cz58.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1);
+        },
+        keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );
@@ -2898,17 +2909,20 @@ abstract final class ObjCBlock_ffiVoid_ffiVoid_EmptyObject$1 {
     return objc.ObjCBlock<
       ffi.Void Function(ffi.Pointer<ffi.Void>, objc.Consumed<EmptyObject>)
     >(
-      objc.newBlockingBlockPort(_z0xonr_wrapBlockingBlock_6yc3kd, (
-        ffi.Pointer<objc.ObjCObjectImpl> rawArgs,
-      ) {
-        final args = _BlockArgs_o9cz58.fromPointer(
-          rawArgs,
-          retain: false,
-          release: false,
-        );
+      objc.newBlockingBlockPort(
+        _z0xonr_wrapBlockingBlock_6yc3kd,
+        (ffi.Pointer<objc.ObjCObjectImpl> rawArgs) {
+          final args = _BlockArgs_o9cz58.fromPointer(
+            rawArgs,
+            retain: false,
+            release: false,
+          );
 
-        fn(args.arg0, args.arg1);
-      }, keepIsolateAlive),
+          fn(args.arg0, args.arg1);
+        },
+        keepIsolateAlive,
+        objCFile: "block_annotation_test_bindings.m",
+      ),
       retain: false,
       release: true,
     );

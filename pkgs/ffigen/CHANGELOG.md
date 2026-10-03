@@ -1,3 +1,8 @@
+## 22.1.1-wip
+
+- Report which generated `.m` file to include in the build when an
+  Objective-C block trampoline fails to load.
+
 ## 22.1.0
 
 - The YAML configuration format is deprecated and will be removed in a future

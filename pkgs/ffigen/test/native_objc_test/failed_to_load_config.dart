@@ -14,6 +14,10 @@ FfiGenerator getConfig([Uri? packageRoot]) {
       dart: DartOutput(
         path: testDir.resolve('failed_to_load_test_bindings.dart'),
       ),
+      // The build hook only compiles .m files directly in native_objc_test.
+      objectiveCFile: testDir.resolve(
+        'missing_source/failed_to_load_test_bindings.m',
+      ),
       style: const NativeExternalBindings(assetId: 'package:ffigen/objc_test'),
     ),
     input: Input(entryPoints: [testDir.resolve('failed_to_load_test.m')]),
@@ -22,6 +26,11 @@ FfiGenerator getConfig([Uri? packageRoot]) {
       Visitor(
         objCInterface: (node) {
           node.isIncluded = node.originalName == 'ClassThatWillFailToLoad';
+        },
+        typealias: (node) {
+          node.isIncluded = node.name == 'BlockThatWillFailToLoad'
+              ? .always
+              : .never;
         },
       ),
     ],

@@ -127,13 +127,13 @@ void main() {
     for (final testFile in testFiles) {
       final configName = testFile.replaceFirst('_test.dart', '');
 
-      test('verifyBindings for $testFile', () {
+      test('verifyBindings for $testFile', () async {
         final config = configs[configName];
         if (config == null) {
           fail('No FfiGenerator config registered for $testFile in `configs`.');
         }
         final verifiers = customVerifiers[testFile];
-        verifyBindings(
+        await verifyBindings(
           config,
           dartVerify: verifiers?.$1,
           objCVerify: verifiers?.$2,

@@ -4,6 +4,7 @@
 
 // Objective C support is only available on mac.
 @TestOn('mac-os')
+import 'package:objective_c/objective_c.dart';
 import 'package:test/test.dart';
 import '../test_utils.dart';
 import 'failed_to_load_test_bindings.dart';
@@ -18,7 +19,53 @@ void main() {
       expect(
         () => ClassThatWillFailToLoad(),
         throwsA(
-          predicate((e) => e.toString().contains('ClassThatWillFailToLoad')),
+          isA<FailedToLoadClassException>().having(
+            (e) => e.toString(),
+            'message',
+            allOf(contains('ClassThatWillFailToLoad'), contains('linked')),
+          ),
+        ),
+      );
+    });
+
+    // The generated .m file is in missing_source, outside the build hook's
+    // source list. The native asset still contains the other ObjC test sources.
+    test('Failed to load listener block trampoline', () {
+      expect(
+        () =>
+            ObjCBlock_ffiVoid_ffiInt.listener((_) {}, keepIsolateAlive: false),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('failed_to_load_test_bindings.m'),
+              contains('build'),
+              contains("Couldn't resolve native function"),
+              contains('package:ffigen/objc_test'),
+              contains('symbol not found'),
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('Failed to load blocking block trampoline', () {
+      expect(
+        () =>
+            ObjCBlock_ffiVoid_ffiInt.blocking((_) {}, keepIsolateAlive: false),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('failed_to_load_test_bindings.m'),
+              contains('build'),
+              contains("Couldn't resolve native function"),
+              contains('package:ffigen/objc_test'),
+              contains('symbol not found'),
+            ),
+          ),
         ),
       );
     });

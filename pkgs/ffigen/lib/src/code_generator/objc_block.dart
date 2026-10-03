@@ -2,7 +2,10 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:convert';
+
 import '../code_generator.dart';
+import '../config_provider.dart';
 import '../context.dart';
 import '../strings.dart' as strings;
 import '../visitor/ast.dart';
@@ -317,6 +320,9 @@ abstract final class $name {
   $listenerConvFnInvocation;
 }''';
 
+      final sourceFile = Namer.stringLiteral(
+        jsonEncode(context.config.output.objCFile.pathSegments.last),
+      );
       final wrapListenerFn = _blockWrappers!.listenerWrapper.name;
       final wrapBlockingFn = _blockWrappers!.blockingWrapper.name;
 
@@ -332,7 +338,8 @@ abstract final class $name {
   static $blockType listener(${_helper.dartType} fn,
           {bool keepIsolateAlive = true}) {
     return $blockType(
-        $newBlockPort($wrapListenerFn, $listenerConvFn, keepIsolateAlive),
+        $newBlockPort($wrapListenerFn, $listenerConvFn, keepIsolateAlive,
+            objCFile: $sourceFile),
         retain: false, release: true);
   }
 
@@ -349,7 +356,8 @@ abstract final class $name {
   static $blockType blocking(${_helper.dartType} fn,
           {bool keepIsolateAlive = true}) {
     return $blockType($newBlockingBlockPort(
-            $wrapBlockingFn, $listenerConvFn, keepIsolateAlive),
+            $wrapBlockingFn, $listenerConvFn, keepIsolateAlive,
+            objCFile: $sourceFile),
         retain: false, release: true);
   }
 ''');
