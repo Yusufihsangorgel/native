@@ -2,6 +2,7 @@
 
 - Report which generated `.m` file to include in the build when an
   Objective-C block trampoline fails to load.
+- Require `package:objective_c` 9.7.0 for generated Objective-C bindings.
 
 ## 22.1.0
 

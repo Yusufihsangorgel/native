@@ -1,4 +1,4 @@
-## 9.6.3-wip
+## 9.7.0-wip
 
 - Close block ports and blocking callbacks when a trampoline fails to load,
   and report the generated `.m` file when provided by FFIgen.
