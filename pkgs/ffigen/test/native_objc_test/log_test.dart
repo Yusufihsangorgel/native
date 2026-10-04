@@ -18,7 +18,7 @@ import 'util.dart';
 
 void main() {
   group('log_test', () {
-    test('Duplicate method log spam', () {
+    test('Duplicate method log spam', () async {
       final logs = <String>[];
       final logger = createTestLogger(
         capturedMessages: logs,
@@ -27,7 +27,7 @@ void main() {
       final config = log_config.getConfig(
         Uri.file(path.join(packagePathForTests, '')),
       );
-      verifyBindings(config, logger: logger);
+      await verifyBindings(config, logger: logger);
       expect(logs, isNot(contains(contains('matchingMethod'))));
       expect(logs, isNot(contains(contains('instancetypeMethod'))));
     });
