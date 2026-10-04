@@ -330,6 +330,37 @@ class ObjCMethod extends AstNode with HasLocalScope {
       kind == ObjCMethodKind.propertySetter;
   bool get isPropertyGetter => kind == ObjCMethodKind.propertyGetter;
   bool get isPropertySetter => kind == ObjCMethodKind.propertySetter;
+
+  /// Converts this property accessor, along with the other accessor of the same
+  /// property, into ordinary methods.
+  ///
+  /// A getter and setter share a [Symbol] (the property name). Once they're
+  /// methods they have different names, so the setter gets its own symbol,
+  /// derived from its selector. Does nothing if this isn't a property accessor.
+  void convertPropertyToMethods() {
+    if (!isProperty) return;
+    final ObjCMethod? getter;
+    if (isPropertyGetter) {
+      getter = this;
+    } else {
+      getter = parent?.methods
+          .where((m) => identical(m.setter, this))
+          .firstOrNull;
+    }
+    final setter = isPropertySetter ? this : this.setter;
+    if (getter != null) {
+      getter.kind = ObjCMethodKind.method;
+      getter.setter = null;
+    }
+    if (setter != null) {
+      setter.kind = ObjCMethodKind.method;
+      setter.symbol = Symbol(
+        setter.originalName.split(':').first,
+        SymbolKind.method,
+      );
+    }
+  }
+
   bool get isRequired => !isOptional;
   bool get isInstanceMethod => !isClassMethod;
   bool get unavailable => apiAvailability.availability == Availability.none;

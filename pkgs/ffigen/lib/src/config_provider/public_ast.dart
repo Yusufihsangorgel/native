@@ -654,6 +654,40 @@ class ObjCMethod extends NamedNode {
   /// Whether this method is a property setter.
   bool get isPropertySetter => _method.isPropertySetter;
 
+  /// Whether this method is generated as a Dart getter or setter, rather than
+  /// as an ordinary method.
+  ///
+  /// This is `true` for the getter and setter of an Objective-C property
+  /// (see [isPropertyGetter] and [isPropertySetter]). Setting it to `false`
+  /// generates the property as ordinary methods instead: the getter keeps the
+  /// property's name, and the setter is named after its selector, for example
+  /// `foo()` and `setFoo(value)` instead of `get foo` and `set foo`. This
+  /// applies to both accessors of the property, whichever one is changed.
+  ///
+  /// Dart doesn't allow a getter or setter to override a method, or the other
+  /// way around. If a method is changed here but a related method in its class
+  /// hierarchy is still a getter, the method is changed back into a getter.
+  ///
+  /// After the change, [isPropertyGetter] and [isPropertySetter] are `false`
+  /// for this node, including in callbacks of the same [Visitor] that run
+  /// later.
+  ///
+  /// Only property accessors can be changed, and only to ordinary methods.
+  /// Setting this to `true` on a method that isn't a property throws an
+  /// [ArgumentError].
+  bool get isProperty => _method.isProperty;
+  set isProperty(bool value) {
+    if (value == _method.isProperty) return;
+    if (value) {
+      throw ArgumentError.value(
+        value,
+        'isProperty',
+        'Cannot turn the method "$originalName" into a property.',
+      );
+    }
+    _method.convertPropertyToMethods();
+  }
+
   /// Whether this ObjCMethod should be included in code generation.
   bool get isIncluded => _method.isIncluded;
   set isIncluded(bool value) => _method.isIncluded = value;
