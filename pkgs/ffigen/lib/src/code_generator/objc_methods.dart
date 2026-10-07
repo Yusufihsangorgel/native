@@ -213,6 +213,7 @@ class ObjCMethod extends AstNode with HasLocalScope {
   Symbol? protocolMethodName;
   ObjCMethods? parent;
   ObjCMethod? setter;
+  ObjCMethod? _convertedSetter;
   bool isIncluded = true;
   ObjCCategory? originCategory;
 
@@ -351,6 +352,7 @@ class ObjCMethod extends AstNode with HasLocalScope {
     if (getter != null) {
       getter.kind = ObjCMethodKind.method;
       getter.setter = null;
+      getter._convertedSetter = setter;
     }
     if (setter != null) {
       setter.kind = ObjCMethodKind.method;
@@ -359,6 +361,18 @@ class ObjCMethod extends AstNode with HasLocalScope {
         SymbolKind.method,
       );
     }
+  }
+
+  /// Makes this method a property getter again, along with the setter that
+  /// [convertPropertyToMethods] changed into a method, if there was one.
+  void revertToProperty() {
+    kind = ObjCMethodKind.propertyGetter;
+    final converted = _convertedSetter;
+    if (converted == null) return;
+    converted.kind = ObjCMethodKind.propertySetter;
+    converted.symbol = symbol;
+    setter = converted;
+    _convertedSetter = null;
   }
 
   bool get isRequired => !isOptional;

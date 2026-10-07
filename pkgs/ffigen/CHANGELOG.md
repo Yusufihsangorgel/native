@@ -1,9 +1,7 @@
 ## 23.1.0-wip
 
-- Added `ObjCMethod.isProperty` setter to the visitor API. Setting it to `false`
-  in a `Visitor` generates an Objective-C property as ordinary methods (for
-  example `foo()` and `setFoo(value)`) instead of a Dart getter and setter. The
-  default behavior is unchanged.
+- Added an `ObjCMethod.isProperty` setter to the visitor API: set it to `false`
+  to generate an Objective-C property as plain methods.
   ([#1711](https://github.com/dart-lang/native/issues/1711))
 
 ## 23.0.0

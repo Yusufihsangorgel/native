@@ -159,7 +159,7 @@ class FixOverriddenMethodsVisitation extends Visitation {
   ) {
     final method = node.getSimilarMethod(rootMethod);
     if (method != null && method.kind == ObjCMethodKind.method) {
-      method.kind = ObjCMethodKind.propertyGetter;
+      method.revertToProperty();
       context.logger.info(
         'Converted ${node.originalName}.${method.originalName} to a getter',
       );

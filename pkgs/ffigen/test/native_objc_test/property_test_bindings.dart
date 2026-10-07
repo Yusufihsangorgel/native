@@ -345,7 +345,7 @@ extension PropertyAsMethodParent$Methods on PropertyAsMethodParent {
   }
 
   /// setOverriddenProperty:
-  void setOverriddenProperty(int value) {
+  set overriddenProperty(int value) {
     final _$$ref = object$.ref;
     _objc_msgSend_1bqef4y(_$$ref.pointer, _sel_setOverriddenProperty_, value);
   }
