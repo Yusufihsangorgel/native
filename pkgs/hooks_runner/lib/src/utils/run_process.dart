@@ -3,9 +3,9 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
-import 'dart:io'
-    show Platform, Process, ProcessException, ProcessResult, systemEncoding;
+import 'dart:io' show Platform, Process, ProcessException, ProcessResult;
 
 import 'package:file/file.dart';
 import 'package:logging/logging.dart';
@@ -74,30 +74,32 @@ Future<RunProcessResult> runProcess({
       // and arguments contain spaces.
     );
 
-    final stdoutSub = process.stdout.listen((List<int> data) {
-      try {
-        final decoded = systemEncoding.decode(data);
-        logger?.fine(decoded);
-        if (captureOutput) {
-          stdoutBuffer.write(decoded);
-        }
-      } catch (e) {
-        logger?.warning('Failed to decode stdout: $e');
-        stdoutBuffer.write('Failed to decode stdout: $e');
-      }
-    });
-    final stderrSub = process.stderr.listen((List<int> data) {
-      try {
-        final decoded = systemEncoding.decode(data);
-        logger?.severe(decoded);
-        if (captureOutput) {
-          stderrBuffer.write(decoded);
-        }
-      } catch (e) {
-        logger?.severe('Failed to decode stderr: $e');
-        stderrBuffer.write('Failed to decode stderr: $e');
-      }
-    });
+    // Every process this package starts is a Dart process (a hook or the kernel
+    // compiler). Dart writes UTF-8 to stdout and stderr.
+    final stdoutSub = process.stdout
+        .transform(utf8.decoder)
+        .handleError((Object e) {
+          logger?.warning('Failed to decode stdout: $e');
+          stdoutBuffer.write('Failed to decode stdout: $e');
+        })
+        .listen((String decoded) {
+          logger?.fine(decoded);
+          if (captureOutput) {
+            stdoutBuffer.write(decoded);
+          }
+        });
+    final stderrSub = process.stderr
+        .transform(utf8.decoder)
+        .handleError((Object e) {
+          logger?.severe('Failed to decode stderr: $e');
+          stderrBuffer.write('Failed to decode stderr: $e');
+        })
+        .listen((String decoded) {
+          logger?.severe(decoded);
+          if (captureOutput) {
+            stderrBuffer.write(decoded);
+          }
+        });
 
     final (exitCode, _, _) = await (
       process.exitCode,

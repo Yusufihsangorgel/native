@@ -3,6 +3,8 @@
 - **Breaking change**: Remove `KernelAssets` (and related `KernelAsset*`
   classes) and `Target`.
 - Drop regular dependency on `package:code_assets`.
+- Fix garbled non-ASCII hook output on Windows by decoding hook stdout and stderr
+  as UTF-8.
 
 ## 1.6.4
 
