@@ -34,5 +34,7 @@ void main(List<String> args) async {
       );
       output.dependencies.add(dataAsset.uri);
     }
+    stdout.writeln('标准输出。');
+    stderr.writeln('标准错误。');
   });
 }

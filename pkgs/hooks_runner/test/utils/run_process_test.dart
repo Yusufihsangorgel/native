@@ -11,13 +11,56 @@
 // supported. Spaces in the executable path and arguments are handled by
 // passing them as separate CreateProcess / exec arguments.
 
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:logging/logging.dart';
 import 'package:test/test.dart';
 
 import '../helpers.dart';
 
 void main() {
+  for (final stream in ['stdout', 'stderr']) {
+    test('runProcess decodes UTF-8 across $stream chunks', () async {
+      const message = 'A中';
+      final bytes = utf8.encode(message);
+      final workingDir = await tempDirForTest();
+      final script = File.fromUri(workingDir.resolve('split_unicode.dart'));
+      final acknowledged = File.fromUri(workingDir.resolve('acknowledged'));
+      await script.writeAsString('''
+import 'dart:io';
+
+void main(List<String> args) async {
+  $stream.add(${bytes.sublist(0, 2)});
+  await $stream.flush();
+  while (!await File(args.single).exists()) {
+    await Future<void>.delayed(const Duration(milliseconds: 10));
+  }
+  $stream.add(${bytes.sublist(2)});
+  await $stream.flush();
+}
+''');
+      final messages = <String>[];
+      final processLogger = createCapturingLogger(messages);
+      final subscription = processLogger.onRecord.listen((record) {
+        if (record.level == Level.FINE || record.level >= Level.WARNING) {
+          // Release the rest only after the first chunk has been decoded.
+          acknowledged.writeAsStringSync('');
+        }
+      });
+      addTearDown(subscription.cancel);
+      final result = await runProcess(
+        executable: dartExecutable,
+        arguments: [script.path, acknowledged.path],
+        logger: processLogger,
+      );
+
+      expect(result.exitCode, 0);
+      expect(stream == 'stdout' ? result.stdout : result.stderr, message);
+      expect(messages.skip(1).join(), message);
+    });
+  }
+
   late Uri scriptUri;
 
   setUpAll(() async {

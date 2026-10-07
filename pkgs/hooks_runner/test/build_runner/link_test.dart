@@ -25,19 +25,27 @@ void main() async {
       // First, run `pub get`, we need pub to resolve our dependencies.
       await runPubGet(workingDirectory: packageUri, logger: logger);
 
+      final buildMessages = <String>[];
       final buildResult = (await buildDataAssets(
         packageUri,
         linkingEnabled: true,
+        capturedLogs: buildMessages,
       )).success;
+      expect(buildMessages.join(), contains('标准输出。'));
+      expect(buildMessages.join(), contains('标准错误。'));
       expect(buildResult.encodedAssets.length, 0);
 
+      final linkMessages = <String>[];
       final linkResult = (await link(
         packageUri,
         logger,
         dartExecutable,
         buildResult: buildResult,
         buildAssetTypes: [.data],
+        capturedLogs: linkMessages,
       )).success;
+      expect(linkMessages.join(), contains('标准输出。'));
+      expect(linkMessages.join(), contains('标准错误。'));
       expect(linkResult.encodedAssets.length, 2);
 
       final buildNoLinkResult = (await buildDataAssets(
