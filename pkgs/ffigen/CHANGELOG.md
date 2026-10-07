@@ -1,4 +1,4 @@
-## 22.2.0-wip
+## 23.1.0-wip
 
 - Added `ObjCMethod.isProperty` setter to the visitor API. Setting it to `false`
   in a `Visitor` generates an Objective-C property as ordinary methods (for
@@ -6,7 +6,7 @@
   default behavior is unchanged.
   ([#1711](https://github.com/dart-lang/native/issues/1711))
 
-## 22.1.0
+## 23.0.0
 
 - The YAML configuration format is deprecated and will be removed in a future
   release.
