@@ -76,12 +76,9 @@ Future<RunProcessResult> runProcess({
 
     // Every process this package starts is a Dart process (a hook or the kernel
     // compiler). Dart writes UTF-8 to stdout and stderr.
+    // Malformed bytes are replaced rather than dropped.
     final stdoutSub = process.stdout
-        .transform(utf8.decoder)
-        .handleError((Object e) {
-          logger?.warning('Failed to decode stdout: $e');
-          stdoutBuffer.write('Failed to decode stdout: $e');
-        })
+        .transform(const Utf8Decoder(allowMalformed: true))
         .listen((String decoded) {
           logger?.fine(decoded);
           if (captureOutput) {
@@ -89,11 +86,7 @@ Future<RunProcessResult> runProcess({
           }
         });
     final stderrSub = process.stderr
-        .transform(utf8.decoder)
-        .handleError((Object e) {
-          logger?.severe('Failed to decode stderr: $e');
-          stderrBuffer.write('Failed to decode stderr: $e');
-        })
+        .transform(const Utf8Decoder(allowMalformed: true))
         .listen((String decoded) {
           logger?.severe(decoded);
           if (captureOutput) {

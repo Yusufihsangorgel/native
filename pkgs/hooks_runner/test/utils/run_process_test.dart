@@ -61,6 +61,27 @@ void main(List<String> args) async {
     });
   }
 
+  test('runProcess replaces malformed UTF-8 bytes', () async {
+    final workingDir = await tempDirForTest();
+    final script = File.fromUri(workingDir.resolve('malformed_unicode.dart'));
+    await script.writeAsString('''
+import 'dart:io';
+
+void main() {
+  stdout.add([0x41, 0xFF, 0x42]);
+}
+''');
+    final messages = <String>[];
+    final result = await runProcess(
+      executable: dartExecutable,
+      arguments: [script.path],
+      logger: createCapturingLogger(messages),
+    );
+
+    expect(result.stdout, 'A\uFFFDB');
+    expect(messages.skip(1).join(), 'A\uFFFDB');
+  });
+
   late Uri scriptUri;
 
   setUpAll(() async {
